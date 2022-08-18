@@ -7,15 +7,15 @@
 
 /* Methods */
 #define macro SET_VALUE() = takes (0) returns (0) {
-    0x04 calldataload
-    [VALUE_LOCATION]
-    sstore
+    0x04 calldataload   $ [value]
+    [VALUE_LOCATION]    $ [ptr, value]
+    sstore              $ []
 }
 
 #define macro GET_VALUE() = takes (0) returns (0) {
     // Load value from storage.
-    [VALUE_LOCATION]
-    sload
+    [VALUE_LOCATION]    $ [ptr]
+    sload               $ [value]
 
     // Store value in memory.
     0x00 mstore
@@ -26,8 +26,8 @@
 
 #define macro MAKE_VALUE() = takes (0) returns (0) {
     // Load value from storage.
-    [VALUE_LOCATION]
-    sload
+    [VALUE_LOCATION]    $ [ptr]
+    sload               $ [sload]
 
     // Store value in memory.
     0x00 mstore
