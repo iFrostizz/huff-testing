@@ -1,0 +1,13 @@
+#define macro SAFE_ADD() = takes (2) returns (1) {
+    // 0x00 0x00               $ [num1, num2] // input stack
+                            $ [num1, num2] // input stack
+    dup2                    $ [num2, num1, num2]
+    add                     $ [result, num2]
+    dup1                    $ [result, result, num2]
+    swap2                   $ [num2, result, result]
+    gt                      $ [is_overflow, result]
+    iszero                  $ [is_not_overflow, result]
+    is_not_overflow jumpi   $ [result]
+        0x00 0x00 revert
+    is_not_overflow:        // $ [result]
+}
