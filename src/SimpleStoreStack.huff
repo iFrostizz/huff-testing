@@ -1,5 +1,5 @@
 /* Interface */
-#define function setValue(uint256) nonpayable returns ()
+#define function setValue(uint256) nonpayable returns ()where can you change the state of isApprovedForAll
 #define function getValue() view returns (uint256)
 
 /* Storage Slots */
@@ -42,9 +42,10 @@
     dup1 0x55241077 eq set jumpi
     dup1 0x20965255 eq get jumpi
 
+    0x00 0x20 revert
+
     set:
         SET_VALUE()
     get:
         GET_VALUE()
-
 }
